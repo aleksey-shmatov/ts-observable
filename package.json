@@ -1,0 +1,30 @@
+{
+  "name": "ts-observable",
+  "version": "1.0.0",
+  "description": "Basic Typescript observable objects via decorators",
+  "main": "index.ts",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksey-shmatov/ts-observable.git"
+  },
+  "keywords": [
+    "typescript",
+    "observable"
+  ],
+  "author": "Aleksey Shmatov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksey-shmatov/ts-observable/issues"
+  },
+  "homepage": "https://github.com/aleksey-shmatov/ts-observable#readme",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5",
+    "tsd": "^0.6.3",
+    "typescript": "^1.6.0-dev.20150816"
+  }
+}
