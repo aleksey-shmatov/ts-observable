@@ -1,0 +1,11 @@
+/// <reference path="./typings/tsd.d.ts"/>
+var observable_1 = require('./lib/observable');
+exports.observable = observable_1.default;
+exports.PropertyChangeEvent = observable_1.PropertyChangeEvent;
+exports.PropertyChangeInfo = observable_1.PropertyChangeInfo;
+var observableCollection_1 = require('./lib/observableCollection');
+exports.ObservableCollection = observableCollection_1.default;
+exports.CollectionChangeEvent = observableCollection_1.CollectionChangeEvent;
+exports.CollectionChangeInfo = observableCollection_1.CollectionChangeInfo;
+exports.CollectionChangeAction = observableCollection_1.CollectionChangeAction;
+//# sourceMappingURL=index.js.map
