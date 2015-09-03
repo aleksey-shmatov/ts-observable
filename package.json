@@ -3,7 +3,10 @@
   "version": "1.0.1",
   "description": "Basic Typescript observable objects via decorators",
   "main": "./index.js",
-  "typings": "./index.d.ts",
+  "typings": "./ts-observable.d.ts",
+  "typescript": {
+        "definition": "./ts-observable.d.ts"
+    },
   "private": true,
   "scripts": {
     "postinstall": "tsd install",
@@ -28,6 +31,7 @@
   "homepage": "https://github.com/aleksey-shmatov/ts-observable#readme",
   "devDependencies": {
     "chai": "^3.2.0",
+    "dts-bundle": "^0.3.0",
     "mocha": "^2.2.5",
     "tsd": "^0.6.3",
     "typescript": "^1.6.0-dev.20150816"
