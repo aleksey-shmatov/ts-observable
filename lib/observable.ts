@@ -2,7 +2,7 @@
 import events = require("ts-events");
 
 export class PropertyChangeInfo{
-  constructor(public propertyName, public oldValue, public newValue){
+  constructor(public target:INotifyPropertyChanged, public propertyName, public oldValue, public newValue){
     
   }
 }
@@ -27,7 +27,7 @@ export default function observable(target: any, key: string) {
       var oldVal = _val;
       _val = newVal; 
       var propertyChangeEvent:PropertyChangeEvent = this.propertyChanged;
-      propertyChangeEvent.post(new PropertyChangeInfo(key, oldVal, newVal));
+      propertyChangeEvent.post(new PropertyChangeInfo(this, key, oldVal, newVal));
     }
   };
 

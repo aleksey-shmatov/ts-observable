@@ -10,10 +10,11 @@ declare module 'ts-observable' {
 declare module '__ts-observable/lib/observable' {
     import events = require("ts-events");
     export class PropertyChangeInfo {
+        target: INotifyPropertyChanged;
         propertyName: any;
         oldValue: any;
         newValue: any;
-        constructor(propertyName: any, oldValue: any, newValue: any);
+        constructor(target: INotifyPropertyChanged, propertyName: any, oldValue: any, newValue: any);
     }
     export class PropertyChangeEvent extends events.SyncEvent<PropertyChangeInfo> {
     }
