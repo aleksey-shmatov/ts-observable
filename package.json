@@ -1,12 +1,13 @@
 {
   "name": "ts-observable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Basic Typescript observable objects via decorators",
-  "main": "index.ts",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
   "private": true,
   "scripts": {
     "postinstall": "tsd install",
-    "compile": "tsc",
+    "compile": "tsc --declaration",
     "prepublish": "tsc",
     "pretest": "tsc",
     "test": "mocha test/**/*.js"
