@@ -25,6 +25,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
     constructor();
     getItemAt(index: number): T;
     addItem(item: T): void;
+    addItemAt(item: T, index: number): void;
     getItemIndex(item: T): number;
     removeItem(item: T): void;
     numElements: number;

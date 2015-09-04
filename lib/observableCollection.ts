@@ -47,6 +47,14 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 		this.collectionChanged.post(changeInfo);
 	}
 	
+	public addItemAt(item:T, index:number):void{
+		this._source.splice(index, 0, item);
+		let changeInfo:CollectionChangeInfo = new CollectionChangeInfo(CollectionChangeAction.Add);
+		changeInfo.newIndex = index;
+		changeInfo.newItems = [item];
+		this.collectionChanged.post(changeInfo);
+	}
+	
 	public getItemIndex(item:T):number{
 		let index = -1; 
 		let count = this._source.length;
