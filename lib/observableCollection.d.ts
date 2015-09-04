@@ -8,6 +8,7 @@ export declare enum CollectionChangeAction {
 }
 export declare class CollectionChangeInfo {
     action: CollectionChangeAction;
+    target: ObservableCollection<any>;
     newItems: Array<any>;
     oldItems: Array<any>;
     newIndex: number;

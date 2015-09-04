@@ -9,6 +9,7 @@ export enum CollectionChangeAction{
 }
 
 export class CollectionChangeInfo{
+  public target:ObservableCollection<any>;
   public newItems:Array<any>;
   public oldItems:Array<any>;
   public newIndex:number;
@@ -42,6 +43,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 	public addItem(item:T):void{
 		this._source.push(item);
 		let changeInfo:CollectionChangeInfo = new CollectionChangeInfo(CollectionChangeAction.Add);
+		changeInfo.target = this;
 		changeInfo.newIndex = this._source.length - 1;
 		changeInfo.newItems = [item];
 		this.collectionChanged.post(changeInfo);
@@ -50,6 +52,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 	public addItemAt(item:T, index:number):void{
 		this._source.splice(index, 0, item);
 		let changeInfo:CollectionChangeInfo = new CollectionChangeInfo(CollectionChangeAction.Add);
+		changeInfo.target = this;
 		changeInfo.newIndex = index;
 		changeInfo.newItems = [item];
 		this.collectionChanged.post(changeInfo);
@@ -80,6 +83,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 	public removeItemAt(itemIndex:number):void{
 		let deletedItems:Array<T> = this._source.splice(itemIndex, 1);
 		let changeInfo:CollectionChangeInfo = new CollectionChangeInfo(CollectionChangeAction.Remove);
+		changeInfo.target = this;
 		changeInfo.oldIndex = itemIndex;
 		changeInfo.oldItems = deletedItems;
 		this.collectionChanged.post(changeInfo);
