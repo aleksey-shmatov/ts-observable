@@ -34,6 +34,7 @@ declare module '__ts-observable/lib/observableCollection' {
     }
     export class CollectionChangeInfo {
         action: CollectionChangeAction;
+        target: ObservableCollection<any>;
         newItems: Array<any>;
         oldItems: Array<any>;
         newIndex: number;
