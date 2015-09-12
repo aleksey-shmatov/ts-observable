@@ -1,5 +1,4 @@
-/// <reference path="../node_modules/ts-events/ts-events.d.ts" />
-import events = require("ts-events");
+import EventEmitter = require('eventemitter3');
 export declare class PropertyChangeInfo {
     target: INotifyPropertyChanged;
     propertyName: any;
@@ -7,9 +6,16 @@ export declare class PropertyChangeInfo {
     newValue: any;
     constructor(target: INotifyPropertyChanged, propertyName: any, oldValue: any, newValue: any);
 }
-export declare class PropertyChangeEvent extends events.SyncEvent<PropertyChangeInfo> {
+export declare class PropertyChangeEvent extends EventEmitter {
+    listen(handler: (info: PropertyChangeInfo) => void, context?: any): void;
+    unlisten(handler: (info: PropertyChangeInfo) => void): void;
+    notify(info: PropertyChangeInfo): boolean;
 }
 export interface INotifyPropertyChanged {
     propertyChanged: PropertyChangeEvent;
 }
-export default function observable(target: any, key: string): void;
+export declare class ObservableObject implements INotifyPropertyChanged {
+    propertyChanged: PropertyChangeEvent;
+    constructor();
+}
+export declare function observable(target: any, key: string): void;

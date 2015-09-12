@@ -1,5 +1,4 @@
-/// <reference path="../node_modules/ts-events/ts-events.d.ts" />
-import events = require("ts-events");
+import EventEmitter = require('eventemitter3');
 export declare enum CollectionChangeAction {
     Add = 0,
     Remove = 1,
@@ -15,7 +14,10 @@ export declare class CollectionChangeInfo {
     oldIndex: number;
     constructor(action: CollectionChangeAction);
 }
-export declare class CollectionChangeEvent extends events.SyncEvent<CollectionChangeInfo> {
+export declare class CollectionChangeEvent extends EventEmitter {
+    listen(handler: (info: CollectionChangeInfo) => void, context?: any): void;
+    unlisten(handler: (info: CollectionChangeInfo) => void): void;
+    notify(info: CollectionChangeInfo): boolean;
 }
 export interface INotifyCollectionChanged {
     collectionChanged: CollectionChangeEvent;
@@ -24,6 +26,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
     private _source;
     collectionChanged: CollectionChangeEvent;
     constructor();
+    source: Array<T>;
     getItemAt(index: number): T;
     addItem(item: T): void;
     addItemAt(item: T, index: number): void;
