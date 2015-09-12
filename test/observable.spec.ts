@@ -1,5 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" /> 
-import {default as observable, INotifyPropertyChanged, PropertyChangeInfo,
+import {observable, INotifyPropertyChanged, PropertyChangeInfo, ObservableObject,
 	 PropertyChangeEvent} from '../lib/observable';
 import { expect } from 'chai';
 
@@ -12,7 +12,7 @@ describe('observable', ()=>{
 	it("should trigger propertyChanged on new value",()=>{
 		let actor = new ObservableActor("oldValue");
 		let propertyChangeInfo:PropertyChangeInfo;
-		actor.propertyChanged.attach((info)=>{
+		(<any>actor).propertyChanged.listen((info)=>{
 			propertyChangeInfo = info;
 		});
 		actor.property = "newValue";
@@ -24,7 +24,7 @@ describe('observable', ()=>{
 	it("should not trigger propertyChanged on same value", ()=>{
 		let actor = new ObservableActor("oldValue");
 		let propertyChangeInfo:PropertyChangeInfo;
-		actor.propertyChanged.attach((info)=>{
+		(<any>actor).propertyChanged.listen((info)=>{
 			propertyChangeInfo = info;
 		});
 		actor.property = "oldValue";
@@ -32,13 +32,12 @@ describe('observable', ()=>{
 	});
 })
 
-class ObservableActor implements INotifyPropertyChanged{
+class ObservableActor extends ObservableObject{
 	@observable
 	public property: any;
 	
-	public propertyChanged:PropertyChangeEvent = new PropertyChangeEvent();
-	
 	constructor(property: any){
+		super();
 		this.property = property;
 	}
 }

@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
     switch (arguments.length) {
@@ -18,7 +23,7 @@ describe('observable', function () {
     it("should trigger propertyChanged on new value", function () {
         var actor = new ObservableActor("oldValue");
         var propertyChangeInfo;
-        actor.propertyChanged.attach(function (info) {
+        actor.propertyChanged.listen(function (info) {
             propertyChangeInfo = info;
         });
         actor.property = "newValue";
@@ -30,21 +35,22 @@ describe('observable', function () {
     it("should not trigger propertyChanged on same value", function () {
         var actor = new ObservableActor("oldValue");
         var propertyChangeInfo;
-        actor.propertyChanged.attach(function (info) {
+        actor.propertyChanged.listen(function (info) {
             propertyChangeInfo = info;
         });
         actor.property = "oldValue";
         chai_1.expect(propertyChangeInfo).to.not.exist;
     });
 });
-var ObservableActor = (function () {
+var ObservableActor = (function (_super) {
+    __extends(ObservableActor, _super);
     function ObservableActor(property) {
-        this.propertyChanged = new observable_1.PropertyChangeEvent();
+        _super.call(this);
         this.property = property;
     }
     __decorate([
-        observable_1.default
+        observable_1.observable
     ], ObservableActor.prototype, "property");
     return ObservableActor;
-})();
+})(observable_1.ObservableObject);
 //# sourceMappingURL=observable.spec.js.map

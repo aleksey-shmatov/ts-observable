@@ -9,7 +9,7 @@ describe('ObservableCollection',()=>{
 		let collection:ObservableCollection<string> = new ObservableCollection<string>();
 		assert(collection.numElements == 0, "initial number of elements is 0");
 		let collectionChangeInfo:CollectionChangeInfo = null;
-		collection.collectionChanged.attach((info:CollectionChangeInfo)=>{
+		collection.collectionChanged.on('collectionChange', (info:CollectionChangeInfo)=>{
 			collectionChangeInfo = info;
 		});
 		collection.addItem("Item");
@@ -25,7 +25,7 @@ describe('ObservableCollection',()=>{
 		collection.addItem("Item 1");
 		collection.addItem("Item 2");
 		let collectionChangeInfo:CollectionChangeInfo = null;
-		collection.collectionChanged.attach((info:CollectionChangeInfo)=>{
+		collection.collectionChanged.on('collectionChange', (info:CollectionChangeInfo)=>{
 			collectionChangeInfo = info;
 		});
 		collection.removeItem("Item 1");

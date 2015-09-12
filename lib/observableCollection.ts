@@ -1,5 +1,4 @@
-/// <reference path="../node_modules/ts-events/ts-events.d.ts" /> 
-import events = require("ts-events");
+import EventEmitter = require('eventemitter3');
 
 export enum CollectionChangeAction{
 	Add,
@@ -15,12 +14,22 @@ export class CollectionChangeInfo{
   public newIndex:number;
   public oldIndex:number;
   constructor(public action:CollectionChangeAction){
-    
+
   }
 }
 
-export class CollectionChangeEvent extends events.SyncEvent<CollectionChangeInfo>{
-
+export class CollectionChangeEvent extends EventEmitter{
+	listen(handler:(info:CollectionChangeInfo)=>void, context = null):void{
+		super.on('collectionChange', handler, context);
+	}
+	
+	unlisten(handler:(info:CollectionChangeInfo)=>void):void{
+		super.off('collectionChange', handler);		
+	}
+	
+	notify(info:CollectionChangeInfo):boolean{
+		return super.emit('collectionChange', info);
+	}
 }
 
 export interface INotifyCollectionChanged{
@@ -36,6 +45,10 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 		this.collectionChanged = new CollectionChangeEvent();
 	}
 	
+	public get source():Array<T>{
+		return this._source;	
+	}
+	
 	public getItemAt(index:number):T{
 		return this._source[index];
 	}
@@ -46,7 +59,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 		changeInfo.target = this;
 		changeInfo.newIndex = this._source.length - 1;
 		changeInfo.newItems = [item];
-		this.collectionChanged.post(changeInfo);
+		this.collectionChanged.notify(changeInfo);
 	}
 	
 	public addItemAt(item:T, index:number):void{
@@ -55,7 +68,7 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 		changeInfo.target = this;
 		changeInfo.newIndex = index;
 		changeInfo.newItems = [item];
-		this.collectionChanged.post(changeInfo);
+		this.collectionChanged.notify(changeInfo);
 	}
 	
 	public getItemIndex(item:T):number{
@@ -86,6 +99,6 @@ export default class ObservableCollection<T> implements INotifyCollectionChanged
 		changeInfo.target = this;
 		changeInfo.oldIndex = itemIndex;
 		changeInfo.oldItems = deletedItems;
-		this.collectionChanged.post(changeInfo);
+		this.collectionChanged.notify(changeInfo);
 	}
 }

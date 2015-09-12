@@ -1,6 +1,7 @@
 /// <reference path="./typings/tsd.d.ts"/>
 var observable_1 = require('./lib/observable');
-exports.observable = observable_1.default;
+exports.observable = observable_1.observable;
+exports.ObservableObject = observable_1.ObservableObject;
 exports.PropertyChangeEvent = observable_1.PropertyChangeEvent;
 exports.PropertyChangeInfo = observable_1.PropertyChangeInfo;
 var observableCollection_1 = require('./lib/observableCollection');

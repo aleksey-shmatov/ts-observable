@@ -6,7 +6,7 @@ describe('ObservableCollection', function () {
         var collection = new observableCollection_1.default();
         chai_1.assert(collection.numElements == 0, "initial number of elements is 0");
         var collectionChangeInfo = null;
-        collection.collectionChanged.attach(function (info) {
+        collection.collectionChanged.on('collectionChange', function (info) {
             collectionChangeInfo = info;
         });
         collection.addItem("Item");
@@ -22,7 +22,7 @@ describe('ObservableCollection', function () {
         collection.addItem("Item 1");
         collection.addItem("Item 2");
         var collectionChangeInfo = null;
-        collection.collectionChanged.attach(function (info) {
+        collection.collectionChanged.on('collectionChange', function (info) {
             collectionChangeInfo = info;
         });
         collection.removeItem("Item 1");
