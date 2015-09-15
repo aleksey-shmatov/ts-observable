@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "description": "Basic Typescript observable objects via decorators",
   "main": "./index.js",
-  "typings": "./ts-observable.d.ts",
   "private": true,
   "scripts": {
     "postinstall": "tsd install",
