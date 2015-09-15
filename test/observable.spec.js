@@ -11,7 +11,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
         case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
     }
 };
-/// <reference path="../typings/tsd.d.ts" /> 
 var observable_1 = require('../lib/observable');
 var chai_1 = require('chai');
 describe('observable', function () {

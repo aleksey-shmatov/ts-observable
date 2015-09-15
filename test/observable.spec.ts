@@ -1,4 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" /> 
 import {observable, INotifyPropertyChanged, PropertyChangeInfo, ObservableObject,
 	 PropertyChangeEvent} from '../lib/observable';
 import { expect } from 'chai';
