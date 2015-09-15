@@ -1,4 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" /> 
 import {default as ObservableCollection, INotifyCollectionChanged, CollectionChangeInfo,
 	 CollectionChangeEvent, CollectionChangeAction} from '../lib/observableCollection';
 import { assert } from 'chai';

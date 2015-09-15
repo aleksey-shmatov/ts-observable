@@ -1,4 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" /> 
 var observableCollection_1 = require('../lib/observableCollection');
 var chai_1 = require('chai');
 describe('ObservableCollection', function () {
