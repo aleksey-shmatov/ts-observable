@@ -36,7 +36,7 @@ export interface INotifyCollectionChanged{
     collectionChanged:CollectionChangeEvent;
 }
 
-export default class ObservableCollection<T> implements INotifyCollectionChanged{
+export class ObservableCollection<T> implements INotifyCollectionChanged{
 	private _source:Array<T>;
 	public collectionChanged:CollectionChangeEvent;
 	

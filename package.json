@@ -31,7 +31,7 @@
     "dts-bundle": "^0.3.0",
     "mocha": "^2.2.5",
     "tsd": "^0.6.3",
-    "typescript": "^1.6.0-dev.20150816"
+    "typescript": "^1.6.0-beta"
   },
   "dependencies": {
     "eventemitter3": "^1.1.1"

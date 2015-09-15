@@ -1,4 +1,4 @@
-import {default as ObservableCollection, INotifyCollectionChanged, CollectionChangeInfo,
+import {ObservableCollection, INotifyCollectionChanged, CollectionChangeInfo,
 	 CollectionChangeEvent, CollectionChangeAction} from '../lib/observableCollection';
 import { assert } from 'chai';
 

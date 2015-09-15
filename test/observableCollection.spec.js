@@ -2,7 +2,7 @@ var observableCollection_1 = require('../lib/observableCollection');
 var chai_1 = require('chai');
 describe('ObservableCollection', function () {
     it('should add element', function () {
-        var collection = new observableCollection_1.default();
+        var collection = new observableCollection_1.ObservableCollection();
         chai_1.assert(collection.numElements == 0, "initial number of elements is 0");
         var collectionChangeInfo = null;
         collection.collectionChanged.on('collectionChange', function (info) {
@@ -17,7 +17,7 @@ describe('ObservableCollection', function () {
         chai_1.assert.deepEqual(collectionChangeInfo.newItems, ["Item"], "Collection change new items should be [Item]");
     });
     it('should remove element', function () {
-        var collection = new observableCollection_1.default();
+        var collection = new observableCollection_1.ObservableCollection();
         collection.addItem("Item 1");
         collection.addItem("Item 2");
         var collectionChangeInfo = null;

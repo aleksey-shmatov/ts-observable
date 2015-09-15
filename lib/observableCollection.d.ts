@@ -22,7 +22,7 @@ export declare class CollectionChangeEvent extends EventEmitter {
 export interface INotifyCollectionChanged {
     collectionChanged: CollectionChangeEvent;
 }
-export default class ObservableCollection<T> implements INotifyCollectionChanged {
+export declare class ObservableCollection<T> implements INotifyCollectionChanged {
     private _source;
     collectionChanged: CollectionChangeEvent;
     constructor();

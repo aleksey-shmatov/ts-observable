@@ -4,7 +4,7 @@
 
 declare module 'ts-observable' {
     export { observable, INotifyPropertyChanged, ObservableObject, PropertyChangeEvent, PropertyChangeInfo } from '__ts-observable/lib/observable';
-    export { default as ObservableCollection, INotifyCollectionChanged, CollectionChangeEvent, CollectionChangeInfo, CollectionChangeAction } from '__ts-observable/lib/observableCollection';
+    export { ObservableCollection, INotifyCollectionChanged, CollectionChangeEvent, CollectionChangeInfo, CollectionChangeAction } from '__ts-observable/lib/observableCollection';
 }
 
 declare module '__ts-observable/lib/observable' {
@@ -56,7 +56,7 @@ declare module '__ts-observable/lib/observableCollection' {
     export interface INotifyCollectionChanged {
         collectionChanged: CollectionChangeEvent;
     }
-    export default class ObservableCollection<T> implements INotifyCollectionChanged {
+    export class ObservableCollection<T> implements INotifyCollectionChanged {
         collectionChanged: CollectionChangeEvent;
         constructor();
         source: Array<T>;
