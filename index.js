@@ -1,4 +1,3 @@
-/// <reference path="./typings/tsd.d.ts"/>
 var observable_1 = require('./lib/observable');
 exports.observable = observable_1.observable;
 exports.ObservableObject = observable_1.ObservableObject;
