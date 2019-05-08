@@ -35,7 +35,7 @@ export class ObservableObject implements INotifyPropertyChanged{
 export function observable(target: any, key: string) {
   let _val = this[key];
   
-  // Don't use arrow function because we want correct "this"
+  // Don't use arrow function because we want correct "this" to be current object
   const getter = function () {
     return _val;
   };
