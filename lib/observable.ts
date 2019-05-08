@@ -33,17 +33,18 @@ export class ObservableObject implements INotifyPropertyChanged{
 }
 
 export function observable(target: any, key: string) {
-  var _val = this[key];
+  let _val = this[key];
   
-  var getter = function () {
+  // Don't use arrow function because we want correct "this"
+  const getter = function () {
     return _val;
   };
 
-  var setter = function (newVal) {
+  const setter = function (newVal) {
     if(_val !== newVal){
-      var oldVal = _val;
+      const oldVal = _val;
       _val = newVal; 
-      var propertyChangeEvent:PropertyChangeEvent = this.propertyChanged;
+      const propertyChangeEvent:PropertyChangeEvent = this.propertyChanged;
       propertyChangeEvent.emit('propertyChange', new PropertyChangeInfo(this, key, oldVal, newVal));
     }
   };

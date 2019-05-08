@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "postinstall": "tsd install",
-    "compile": "tsc --declaration; node makebundle.js;",
+    "compile": "tsc --declaration;",
     "prepublish": "tsc",
     "pretest": "tsc",
     "test": "mocha test/**/*.js"
