@@ -8,45 +8,57 @@ export enum CollectionChangeAction {
 }
 
 export class CollectionChangeInfo {
-    constructor(public readonly action: CollectionChangeAction,
-        public readonly target: ObservableCollection<any>,
-        public readonly newIndex: number,
-        public readonly newItems: Array<any>,
-        public readonly oldIndex: number,
-        public readonly oldItems: Array<any>
+    public readonly action: CollectionChangeAction;
+    public readonly target: ObservableCollection<any>;
+    public readonly newIndex: number;
+    public readonly newItems: any[];
+    public readonly oldIndex: number;
+    public readonly oldItems: any[];
+    
+    public constructor(action: CollectionChangeAction,
+        target: ObservableCollection<any>,
+        newIndex: number,
+        newItems: any[],
+        oldIndex: number,
+        oldItems: any[]
     ) {
-
+        this.action = action;
+        this.target = target;
+        this.newIndex = newIndex;
+        this.newItems = newItems;
+        this.oldIndex = oldIndex;
+        this.oldItems = oldItems;
     }
 }
 
 export class CollectionChangeEvent extends EventEmitter {
-    listen(handler: (info: CollectionChangeInfo) => void, context: any = null): void {
+    public listen(handler: (info: CollectionChangeInfo) => void, context: any = null): void {
         super.on('collectionChange', handler, context);
     }
 
-    unlisten(handler: (info: CollectionChangeInfo) => void): void {
+    public unlisten(handler: (info: CollectionChangeInfo) => void): void {
         super.off('collectionChange', handler);
     }
 
-    notify(info: CollectionChangeInfo): boolean {
+    public notify(info: CollectionChangeInfo): boolean {
         return super.emit('collectionChange', info);
     }
 }
 
-export interface INotifyCollectionChanged {
+export interface NotifyCollectionChanged {
     collectionChanged: CollectionChangeEvent;
 }
 
-export class ObservableCollection<T> implements INotifyCollectionChanged {
-    private _source: Array<T>;
+export class ObservableCollection<T> implements NotifyCollectionChanged {
+    private _source: T[];
     public collectionChanged: CollectionChangeEvent;
 
-    constructor() {
+    public constructor() {
         this._source = new Array<T>();
         this.collectionChanged = new CollectionChangeEvent();
     }
 
-    public get source(): Array<T> {
+    public get source(): T[] {
         return this._source;
     }
 
@@ -81,7 +93,7 @@ export class ObservableCollection<T> implements INotifyCollectionChanged {
     public getItemIndex(item: T): number {
         let index = -1;
         let count = this._source.length;
-        for (let i: number = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             var currentItem: T = this._source[i];
             if (currentItem === item) {
                 index = i;
@@ -101,7 +113,7 @@ export class ObservableCollection<T> implements INotifyCollectionChanged {
     }
 
     public removeItemAt(itemIndex: number): void {
-        let deletedItems: Array<T> = this._source.splice(itemIndex, 1);
+        let deletedItems: T[] = this._source.splice(itemIndex, 1);
         let changeInfo: CollectionChangeInfo = new CollectionChangeInfo(CollectionChangeAction.Remove,
             this,
             -1,

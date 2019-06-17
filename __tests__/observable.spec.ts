@@ -1,5 +1,5 @@
 import {
-    observable, INotifyPropertyChanged, PropertyChangeInfo,
+    observable, NotifyPropertyChanged, PropertyChangeInfo,
     PropertyChangeEvent
 } from '../src/observable';
 
@@ -32,7 +32,7 @@ describe('observable', () => {
     });
 })
 
-class ObservableActor implements INotifyPropertyChanged {
+class ObservableActor implements NotifyPropertyChanged {
     public propertyChanged: PropertyChangeEvent = new PropertyChangeEvent();
 
     @observable

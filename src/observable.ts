@@ -1,41 +1,49 @@
 import EventEmitter from 'eventemitter3';
 
 export class PropertyChangeInfo {
-    constructor(public readonly target: INotifyPropertyChanged, 
-        public readonly propertyName: string,
-        public readonly oldValue: any,
-        public readonly newValue: any) {
+    public readonly target: NotifyPropertyChanged;
+    public readonly propertyName: string;
+    public readonly oldValue: any;
+    public readonly newValue: any;
 
+    public constructor(target: NotifyPropertyChanged,
+        propertyName: string,
+        oldValue: any,
+        newValue: any) {
+        this.target = target;
+        this.propertyName = propertyName;
+        this.oldValue = oldValue;
+        this.newValue = newValue;
     }
 }
 
 export class PropertyChangeEvent extends EventEmitter {
-    listen(handler: (info: PropertyChangeInfo) => void, context: any = null): void {
+    public listen(handler: (info: PropertyChangeInfo) => void, context: any = null): void {
         super.on('propertyChange', handler, context);
     }
 
-    unlisten(handler: (info: PropertyChangeInfo) => void): void {
+    public unlisten(handler: (info: PropertyChangeInfo) => void): void {
         super.off('propertyChange', handler);
     }
 
-    notify(info: PropertyChangeInfo) {
+    public notify(info: PropertyChangeInfo): boolean {
         return super.emit('propertyChange', info);
     }
 }
 
-export interface INotifyPropertyChanged {
+export interface NotifyPropertyChanged {
     propertyChanged: PropertyChangeEvent;
 }
 
-export function observable(target: any, key: string) {
+export function observable(target: any, key: string): void {
     let _val = target[key];
 
     // Don't use arrow function because we want correct "this" to be current object
-    const getter = function () {
+    const getter = function (): any {
         return _val;
     };
 
-    const setter = function (this: any, newVal: any) {
+    const setter = function (this: any, newVal: any): void {
         if (_val !== newVal) {
             const oldVal = _val;
             _val = newVal;

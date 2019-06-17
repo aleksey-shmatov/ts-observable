@@ -1,8 +1,8 @@
 export {
-    observable, INotifyPropertyChanged,
+    observable, NotifyPropertyChanged,
     PropertyChangeEvent, PropertyChangeInfo
 } from './observable';
 export {
-    ObservableCollection, INotifyCollectionChanged, CollectionChangeEvent,
+    ObservableCollection, NotifyCollectionChanged, CollectionChangeEvent,
     CollectionChangeInfo, CollectionChangeAction
 } from './observableCollection';
