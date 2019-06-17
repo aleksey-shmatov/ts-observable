@@ -2,14 +2,16 @@
   "name": "ts-observable",
   "version": "1.0.1",
   "description": "Basic Typescript observable objects via decorators",
-  "main": "./index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "private": true,
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "postinstall": "tsd install",
-    "compile": "tsc --declaration;",
-    "prepublish": "tsc",
-    "pretest": "tsc",
-    "test": "mocha test/**/*.js"
+    "build": "tsc",
+    "prepare" : "npm run build",
+    "test": "jest --config jestconfig.json --verbose false"
   },
   "repository": {
     "type": "git",
@@ -26,13 +28,13 @@
   },
   "homepage": "https://github.com/aleksey-shmatov/ts-observable#readme",
   "devDependencies": {
-    "chai": "^3.2.0",
-    "dts-bundle": "^0.3.0",
-    "mocha": "^2.2.5",
-    "tsd": "^0.6.3",
-    "typescript": "^1.6.0-beta"
+    "@types/eventemitter3": "^2.0.2",
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
   },
   "dependencies": {
-    "eventemitter3": "^1.1.1"
+    "eventemitter3": "^3.1.2"
   }
 }

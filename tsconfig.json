@@ -1,15 +1,15 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "isolatedModules": false,
-        "experimentalDecorators": true,
-        "sourceMap": true
-    },
-    "files": [
-        "./typings/tsd.d.ts",
-        "./index.ts",
-        "./test/observable.spec.ts",
-        "./test/observableCollection.spec.ts"
-    ]
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es2018", "dom"],
+    "module": "commonjs",
+    "outDir": "./lib",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules", "__tests__/*"]
 }

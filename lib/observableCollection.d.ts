@@ -3,19 +3,19 @@ export declare enum CollectionChangeAction {
     Add = 0,
     Remove = 1,
     Replace = 2,
-    Reset = 3,
+    Reset = 3
 }
 export declare class CollectionChangeInfo {
-    action: CollectionChangeAction;
-    target: ObservableCollection<any>;
-    newItems: Array<any>;
-    oldItems: Array<any>;
-    newIndex: number;
-    oldIndex: number;
-    constructor(action: CollectionChangeAction);
+    readonly action: CollectionChangeAction;
+    readonly target: ObservableCollection<any>;
+    readonly newIndex: number;
+    readonly newItems: Array<any>;
+    readonly oldIndex: number;
+    readonly oldItems: Array<any>;
+    constructor(action: CollectionChangeAction, target: ObservableCollection<any>, newIndex: number, newItems: Array<any>, oldIndex: number, oldItems: Array<any>);
 }
 export declare class CollectionChangeEvent extends EventEmitter {
-    listen(handler: (info: CollectionChangeInfo) => void, context?: any): void;
+    listen(handler: (info: CollectionChangeInfo) => void, context?: null): void;
     unlisten(handler: (info: CollectionChangeInfo) => void): void;
     notify(info: CollectionChangeInfo): boolean;
 }
@@ -26,12 +26,12 @@ export declare class ObservableCollection<T> implements INotifyCollectionChanged
     private _source;
     collectionChanged: CollectionChangeEvent;
     constructor();
-    source: Array<T>;
+    readonly source: Array<T>;
     getItemAt(index: number): T;
     addItem(item: T): void;
     addItemAt(item: T, index: number): void;
     getItemIndex(item: T): number;
     removeItem(item: T): void;
-    numElements: number;
+    readonly numElements: number;
     removeItemAt(itemIndex: number): void;
 }
