@@ -7,7 +7,7 @@ export declare class PropertyChangeInfo {
     constructor(target: INotifyPropertyChanged, propertyName: string, oldValue: any, newValue: any);
 }
 export declare class PropertyChangeEvent extends EventEmitter {
-    listen(handler: (info: PropertyChangeInfo) => void, context?: null): void;
+    listen(handler: (info: PropertyChangeInfo) => void, context?: any): void;
     unlisten(handler: (info: PropertyChangeInfo) => void): void;
     notify(info: PropertyChangeInfo): boolean;
 }

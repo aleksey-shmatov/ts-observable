@@ -10,7 +10,7 @@ export class PropertyChangeInfo {
 }
 
 export class PropertyChangeEvent extends EventEmitter {
-    listen(handler: (info: PropertyChangeInfo) => void, context = null): void {
+    listen(handler: (info: PropertyChangeInfo) => void, context: any = null): void {
         super.on('propertyChange', handler, context);
     }
 
