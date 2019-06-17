@@ -8,12 +8,12 @@ export class PropertyChangeInfo{
 
 export class PropertyChangeEvent extends EventEmitter{
   listen(handler:(info:PropertyChangeInfo)=>void, context = null):void{
-		super.on('propertyChange', handler, context);
-	}
+     super.on('propertyChange', handler, context);
+  }
 	
-	unlisten(handler:(info:PropertyChangeInfo)=>void):void{
-		super.off('propertyChange', handler);		
-	}
+  unlisten(handler:(info:PropertyChangeInfo)=>void):void{
+    super.off('propertyChange', handler);		
+  }
 	
   notify(info:PropertyChangeInfo){
     return super.emit('propertyChange', info);
