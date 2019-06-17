@@ -20,7 +20,7 @@ export class CollectionChangeInfo {
 }
 
 export class CollectionChangeEvent extends EventEmitter {
-    listen(handler: (info: CollectionChangeInfo) => void, context = null): void {
+    listen(handler: (info: CollectionChangeInfo) => void, context: any = null): void {
         super.on('collectionChange', handler, context);
     }
 

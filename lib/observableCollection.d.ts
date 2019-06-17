@@ -15,7 +15,7 @@ export declare class CollectionChangeInfo {
     constructor(action: CollectionChangeAction, target: ObservableCollection<any>, newIndex: number, newItems: Array<any>, oldIndex: number, oldItems: Array<any>);
 }
 export declare class CollectionChangeEvent extends EventEmitter {
-    listen(handler: (info: CollectionChangeInfo) => void, context?: null): void;
+    listen(handler: (info: CollectionChangeInfo) => void, context?: any): void;
     unlisten(handler: (info: CollectionChangeInfo) => void): void;
     notify(info: CollectionChangeInfo): boolean;
 }
