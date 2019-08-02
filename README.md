@@ -1,2 +1,2 @@
 # ts-observable
-> Basic Typescript Observable objects via decorators
+Basic Typescript Observable objects via decorators
